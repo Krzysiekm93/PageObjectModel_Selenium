@@ -54,6 +54,10 @@ class CreateAccountPage(BasePage):
         """
         birth_day = Select(self.driver.find_element(*Locators.BIRTH_DAY_SELECT))
         birth_day.select_by_value(str(date_of_birth.day))
+        birth_month = Select(self.driver.find_element(*Locators.BIRTH_MONTH_SELECT))
+        birth_month.select_by_value(str(date_of_birth.month))
+        birth_year = Select(self.driver.find_element(*Locators.BIRTH_YEAR_SELECT))
+        birth_year.select_by_value(str(date_of_birth.year))
 
     def get_email_input(self):
         """
@@ -68,3 +72,4 @@ class CreateAccountPage(BasePage):
         """
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(Locators.FIRST_NAME))
         WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(Locators.REGISTER_BTN))
+
