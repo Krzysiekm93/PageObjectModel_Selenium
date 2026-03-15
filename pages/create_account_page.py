@@ -1,4 +1,6 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from pages.base_page import BasePage
 from time import sleep
 from utils.custom_types import Gender
@@ -13,6 +15,7 @@ class Locators:
     GENDER_FEMALE = (By.XPATH, '//label[@for="id_gender2"]')
     EMAIL = (By.ID, 'email')
     PASSWORD = (By.ID, 'passwd')
+    REGISTER_BTN = (By.ID, 'submitAccount')
 
 
 class CreateAccountPage(BasePage):
@@ -49,5 +52,8 @@ class CreateAccountPage(BasePage):
         return self.driver.find_element(*Locators.EMAIL).get_attribute("value")
 
     def _verify_page(self):
-        # TODO: Improve this mechanism!
-        sleep(3)
+        """
+        Verifies if elements on the page showed up
+        """
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(Locators.FIRST_NAME))
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(Locators.REGISTER_BTN))
