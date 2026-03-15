@@ -35,15 +35,18 @@ class CreateAccountPage(BasePage):
         """
         self.driver.find_element(*Locators.FIRST_NAME).send_keys(first_name)
 
+    def enter_password(self, password):
+        """
+        Enter Password
+        """
+        self.driver.find_element(*Locators.PASSWORD).send_keys(password)
+
     def get_email_input(self):
         """
         Taking entered e-mail
         :return String
         """
         return self.driver.find_element(*Locators.EMAIL).get_attribute("value")
-
-    def enter_password(self, password):
-        self.driver.find_element(*Locators.PASSWORD).send_keys(password)
 
     def _verify_page(self):
         # TODO: Improve this mechanism!

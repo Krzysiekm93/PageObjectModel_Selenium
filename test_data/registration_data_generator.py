@@ -5,9 +5,9 @@ import random
 
 class RegistrationDataGenerator:
     def __init__(self):
-        self.Gender = random.choice([Gender.MALE, Gender.FEMALE])
+        self.GENDER = random.choice([Gender.MALE, Gender.FEMALE])
         self.fake = Faker("pl_PL")
-        if self.Gender == Gender.FEMALE:
+        if self.GENDER == Gender.FEMALE:
             self.FIRST_NAME = self.fake.first_name_female()
         else:
             self.FIRST_NAME = self.fake.first_name_male()
