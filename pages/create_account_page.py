@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.select import Select
 from pages.base_page import BasePage
 from time import sleep
 from utils.custom_types import Gender
@@ -16,6 +17,9 @@ class Locators:
     EMAIL = (By.ID, 'email')
     PASSWORD = (By.ID, 'passwd')
     REGISTER_BTN = (By.ID, 'submitAccount')
+    BIRTH_DAY_SELECT = (By.ID, 'days')
+    BIRTH_MONTH_SELECT = (By.ID, 'months')
+    BIRTH_YEAR_SELECT = (By.ID, 'years')
 
 
 class CreateAccountPage(BasePage):
@@ -43,6 +47,13 @@ class CreateAccountPage(BasePage):
         Enter Password
         """
         self.driver.find_element(*Locators.PASSWORD).send_keys(password)
+
+    def select_date_of_birth(self, date_of_birth):
+        """
+        Select Date of Birth
+        """
+        birth_day = Select(self.driver.find_element(*Locators.BIRTH_DAY_SELECT))
+        birth_day.select_by_value(str(date_of_birth.day))
 
     def get_email_input(self):
         """
