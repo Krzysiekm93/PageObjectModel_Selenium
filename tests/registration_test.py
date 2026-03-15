@@ -7,11 +7,12 @@ class RegistrationTest(BaseTest):
         super().setUp()
         self.data = RegistrationDataGenerator()
         self.authentication_page = self.home_page.click_sign_in()
-        self.authentication_page.enter_create_account_email("asd@gmail.com")
+        self.authentication_page.enter_create_account_email(self.data.EMAIL)
         self.create_account_page = self.authentication_page.click_create_account()
 
 
     def testNoLastName(self):
         self.create_account_page.choose_gender(self.data.Gender)
         self.create_account_page.enter_first_name(self.data.FIRST_NAME)
+        self.assertEqual(self.data.EMAIL, self.create_account_page.get_email_input())
         sleep(5)
