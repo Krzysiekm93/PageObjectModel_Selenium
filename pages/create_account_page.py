@@ -12,6 +12,7 @@ class Locators:
     GENDER_MALE = (By.XPATH, '//label[@for="id_gender1"]')
     GENDER_FEMALE = (By.XPATH, '//label[@for="id_gender2"]')
     EMAIL = (By.ID, 'email')
+    PASSWORD = (By.ID, 'passwd')
 
 
 class CreateAccountPage(BasePage):
@@ -40,6 +41,9 @@ class CreateAccountPage(BasePage):
         :return String
         """
         return self.driver.find_element(*Locators.EMAIL).get_attribute("value")
+
+    def enter_password(self, password):
+        self.driver.find_element(*Locators.PASSWORD).send_keys(password)
 
     def _verify_page(self):
         # TODO: Improve this mechanism!
