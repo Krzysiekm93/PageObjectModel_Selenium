@@ -21,6 +21,7 @@ class Locators:
     BIRTH_MONTH_SELECT = (By.ID, 'months')
     BIRTH_YEAR_SELECT = (By.ID, 'years')
     VISIBLE_ERRORS = (By.XPATH, '//div[@class="alert alert-danger"]/ol/li')
+    NUMBER_VISIBLE_ERRORS = (By.XPATH, '//div[@class="alert alert-danger"]/p')
 
 class CreateAccountPage(BasePage):
     """
@@ -60,6 +61,9 @@ class CreateAccountPage(BasePage):
         birth_year.select_by_value(str(date_of_birth.year))
 
     def click_register_button(self):
+        """
+        Clicks Register Button
+        """
         self.driver.find_element(*Locators.REGISTER_BTN).click()
 
     def get_email_input(self):
@@ -68,6 +72,12 @@ class CreateAccountPage(BasePage):
         :return String
         """
         return self.driver.find_element(*Locators.EMAIL).get_attribute("value")
+
+    def get_number_of_errors_message(self):
+        """
+        Get Number of Errors message
+        """
+        return self.driver.find_element(*Locators.NUMBER_VISIBLE_ERRORS).text
 
     def get_visible_errors(self):
         """
