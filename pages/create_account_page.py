@@ -33,10 +33,12 @@ class CreateAccountPage(BasePage):
         """
         Choose Mr or Mrs
         """
-        if gender == Gender.MALE:
+        if gender == Gender.MALE or gender == "male":
             self.driver.find_element(*Locators.GENDER_MALE).click()
-        else:
+        elif gender == Gender.FEMALE or gender == "female":
             self.driver.find_element(*Locators.GENDER_FEMALE).click()
+        else:
+            raise ValueError("Gender must be male or female!")
 
     def enter_first_name(self, first_name):
         """
