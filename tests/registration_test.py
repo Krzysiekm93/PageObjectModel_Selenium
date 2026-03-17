@@ -1,6 +1,6 @@
 from tests.base_test import BaseTest
 from time import sleep
-from test_data.registration_data_generator import RegistrationDataGenerator
+from test_data.registration_data import RegistrationDataGenerator
 
 class RegistrationTest(BaseTest):
     def setUp(self):

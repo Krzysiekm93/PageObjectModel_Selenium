@@ -1,7 +1,17 @@
 from faker import Faker
 from utils.custom_types import Gender
 import random
+import csv
 
+def get_csv_da(filename):
+    rows = []
+    with open(filename) as csvfile:
+        reader = csv.reader(csvfile)
+        # Pass through the first line
+        next(reader, None)
+        for row in reader:
+            rows.append(row)
+        return rows
 
 class RegistrationDataGenerator:
     def __init__(self):
