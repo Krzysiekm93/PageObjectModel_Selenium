@@ -3,7 +3,7 @@ from utils.custom_types import Gender
 import random
 import csv
 
-def get_csv_da(filename):
+def get_csv_data(filename):
     rows = []
     with open(filename) as csvfile:
         reader = csv.reader(csvfile)
